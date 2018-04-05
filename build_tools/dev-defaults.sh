@@ -6,7 +6,7 @@
 # Note: levels 6 and 7 are omitted since they have the same native
 # APIs as level 5. Same for levels 10, 11 and 12
 #
-API_LEVELS="3 4 5 8 9 12 13 14 15 16 17 18 19 21"
+API_LEVELS="3 4 5 8 9 12 13 14 15 16 17 18 19 21 22 23 24 26 27"
 
 FIRST_API64_LEVEL=21
 
