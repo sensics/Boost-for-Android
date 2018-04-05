@@ -136,6 +136,10 @@ STDLIBS=$(commas_to_spaces $STDLIBS)
 
 PYTHON_VERSION=$(echo "$PYTHON_VERSIONS" | tr ' ' '\n' | tail -n 1)
 PYTHON_DIR=$NDK_DIR/$PYTHON_SUBDIR/$PYTHON_VERSION
+if [ ! -d ${PYTHON_DIR} ]; then
+    PYTHON_DIR=
+    PYTHON_VERSION=
+fi
 
 if [ -z "$OPTION_BUILD_DIR" ]; then
     BUILD_DIR=$NDK_TMPDIR/build-boost
@@ -402,8 +406,10 @@ build_boost_for_abi ()
     {
         echo "import option ;"
         echo "import feature ;"
+        if [ "x${PYTHON_VERSION}" != "x" ]; then
         echo "import python ;"
         echo "using python : $PYTHON_VERSION : $PYTHON_DIR : $PYTHON_DIR/include/python : $PYTHON_DIR/libs/$ABI ;"
+        fi
         case $LIBSTDCXX in
             gnu-*)
                 echo "using gcc : $ARCH : g++ ;"
